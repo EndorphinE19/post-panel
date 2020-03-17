@@ -7,6 +7,14 @@ npm install
 ### Start json-server and vue
 ```
 npm run serve & npm run start
+
+or
+
+Run 2 consoles in the project bark and invoke commands
+---
+npm run start 
+---
+npm run serve
 ```
 
 ### Compiles and hot-reloads for development
