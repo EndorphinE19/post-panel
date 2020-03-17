@@ -4,6 +4,10 @@
 ```
 npm install
 ```
+### Start json-server and vue
+```
+npm run serve & npm run start
+```
 
 ### Compiles and hot-reloads for development
 ```
