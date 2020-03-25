@@ -1,10 +1,9 @@
 <template lang="pug">
     div
         div.form
-            <b-message v-if="dangerVisible" title="Заполните поле" type="is-danger" aria-close-label="Close message">
+            <b-message v-if="dangerVisible" title="Некорректные данные" type="is-danger" aria-close-label="Close message">
                 | {{errorMessage}}
             </b-message>
-            | {{dangerVisible}}
             <b-field label="Email">
                 <b-input type="email" placeholder="Email" maxlength="30" v-model.trim="email"></b-input>
             </b-field>
@@ -53,6 +52,10 @@
 
             logins: function () {
                 this.login([this.email, this.password])  
+                .catch(err => {
+                    !this.dangerVisible ? this.dangerVisible = !this.dangerVisible : null
+                    this.errorMessage = 'Неверный логин или пароль'
+                });
             }
         }
     }

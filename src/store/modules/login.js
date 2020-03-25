@@ -4,7 +4,8 @@ export default {
     state: {
         status: '',
         token: localStorage.getItem('token') || '',
-        user: localStorage.getItem('user') || ''
+        user: localStorage.getItem('user') || '',
+        error:''
     },
     mutations: {
 
@@ -34,19 +35,14 @@ export default {
                 localStorage.setItem('token', res.data[0].role)
                 localStorage.setItem('user', res.data[0].id)
                 ctx.commit('setToken', res.data[0])
-                //window.location.href = '/posts'
+                window.location.href = '/posts'
 
               } else {
 
-                throw new Error('Неверный пароль!')
+                throw new Error('Неверный логин или пароль')
 
               }
             })
-            .catch(err => {
-              console.log(err)
-            });
-            
-            
         }
     },
     getters: {

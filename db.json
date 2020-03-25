@@ -20,11 +20,11 @@
   "posts": [
     {
       "id": 2,
-      "title": "d",
-      "description": "d",
+      "title": "dsfds",
+      "description": "fsdfdsf",
       "claps": 0,
       "createdAt": "2020-03-17T06:34:54.669Z",
-      "updateAt": "2020-03-17T08:23:21.182Z",
+      "updateAt": "2020-03-25T18:14:54.800Z",
       "userId": "1"
     },
     {
@@ -132,6 +132,15 @@
       "description": "dasd",
       "claps": 0,
       "createdAt": "2020-03-17T07:26:40.529Z",
+      "updateAt": "",
+      "userId": "1"
+    },
+    {
+      "id": 16,
+      "title": "sdfds",
+      "description": "sdfdsf",
+      "claps": 0,
+      "createdAt": "2020-03-25T18:13:43.834Z",
       "updateAt": "",
       "userId": "1"
     }
