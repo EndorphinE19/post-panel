@@ -1,6 +1,9 @@
 <template lang="pug">
     div
         div.form
+            <b-message v-if="errorAct" title="Неверные данные" type="is-danger" aria-close-label="Close message">
+                | {{getError}}
+            </b-message>
             <b-message v-if="dangerVisible" title="Заполните поле" type="is-danger" aria-close-label="Close message">
                 | {{errorMessage}}
             </b-message>
@@ -27,15 +30,18 @@
                 email: '',
                 password: '',
                 errorMessage: '',
-                dangerVisible: false
+                dangerVisible: false,
+                errorAct: false
             }
         },
-        computed:mapGetters(['getToken']),
+        computed:mapGetters(['getToken', 'getError']),
         methods: {
 
             ...mapActions(['login']),
 
             validate() {
+
+                this.getError.length != 0 ? this.errorAct = true : this.errorAct = false
 
                 if (this.email.length > 0) {
                     if (this.password.length > 0) {

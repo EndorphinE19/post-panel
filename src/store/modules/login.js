@@ -4,12 +4,12 @@ export default {
     state: {
         status: '',
         token: localStorage.getItem('token') || '',
-        user: localStorage.getItem('user') || ''
+        user: localStorage.getItem('user') || '',
+        error:'Неверный логин или пароль!'
     },
     mutations: {
 
         setToken(state, token) {
-          console.log(token.role, token.id)
           state.token = token.role
           state.user = token.id
         },
@@ -20,12 +20,17 @@ export default {
           state.token = localStorage.removeItem('user')
 
           window.location.href = '/'
+        },
+
+        error(state, e) {
+          state.error = e
         }
     },
     actions: {
 
         async login(ctx, user){
             
+          try {
             await axios.get('http://localhost:3000/users', {params: {login: user[0]}})
             .then(res => {
               
@@ -34,18 +39,20 @@ export default {
                 localStorage.setItem('token', res.data[0].role)
                 localStorage.setItem('user', res.data[0].id)
                 ctx.commit('setToken', res.data[0])
-                //window.location.href = '/posts'
+                window.location.href = '/posts'
 
               } else {
 
-                throw new Error('Неверный пароль!')
+                throw new Error('Неверный логин или пароль!')
 
               }
-            })
-            .catch(err => {
+            }).catch(err => {
               console.log(err)
+              ctx.commit('error', ctx.state.error)
             });
-            
+          } catch(err) {
+            ctx.commit('error', ctx.state.error)
+          }
             
         }
     },
@@ -55,6 +62,9 @@ export default {
         },
         getUser(state) {
           return state.user
+        },
+        getError(state) {
+          return state.error
         }
     }
 }
